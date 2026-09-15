@@ -17,6 +17,10 @@
                 <flux:sidebar.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
                     {{ __('Dashboard') }}
                 </flux:sidebar.item>
+
+                <flux:sidebar.item icon="check-circle" :href="route('checklists.index')" :current="request()->routeIs('checklists.index')" wire:navigate>
+                    {{ __('Checklists') }}
+                </flux:sidebar.item>
             </flux:sidebar.group>
         </flux:sidebar.nav>
 
@@ -30,6 +34,9 @@
                 </flux:sidebar.item>
                 @endforeach
             </flux:sidebar.group>
+
+
+
         </flux:sidebar.nav>
 
         <x-desktop-user-menu class="hidden lg:block" :name="auth()->user()->name" />
