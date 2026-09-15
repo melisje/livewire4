@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Carbon\CarbonImmutable;
+use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
@@ -24,6 +25,13 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->configureDefaults();
+
+        // Definieer de macro
+        Blueprint::macro('dbTimestamps', function () {
+            $this->timestamp('created_at')->useCurrent();
+            $this->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
+        });
+
     }
 
     /**
